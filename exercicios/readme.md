@@ -1,10 +1,9 @@
 
 # Agenda 
 
-0) apresentacao modulo e agenda
-1) Terraform - o que é
-2) infra e exercicios
-3) bastiao
+1) apresentacao modulo e agenda
+2) Terraform - o que é
+3) Bastiao
 4) EKS - Parte 1
 5) EKS - Parte 2
 6) App - Parte 1 
