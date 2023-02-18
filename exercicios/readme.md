@@ -1,19 +1,22 @@
 
 # Agenda 
 
-1) apresentacao modulo e agenda
-2) Terraform - o que é
-3) Bastiao
+0) apresentacao modulo e agenda
+1) Terraform - o que é
+2) infra e exercicios
+3) bastiao
 4) EKS - Parte 1
 5) EKS - Parte 2
 6) App - Parte 1 
 7) App - Parte 2
-8) Módulos customizados
-9) Kubernetes manifesto
-10) 
-20)
+8) GKE - Parte 1
+9) GKE - Parte 2
+10) GKE-App Parte 1
+11) GKE-App Parte 2
+12) Módulos customizados
 
-21) Pulumi - o que é
+
+20) Pulumi - o que é
 
 
 # requisitos
@@ -50,7 +53,6 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
 
 sudo apt update
 
-
 sudo apt install terraform -y
 
 terraform --version
@@ -86,8 +88,6 @@ aws sts get-caller-identity
 
 ```
 
-
-
 # Aula 4 - EKS - Parte 1 
 Código terraform 
 
@@ -95,17 +95,12 @@ Código terraform
 # Aula 5 - EKS - Parte 2 
 
 
-
-
-
 ```sh
 cd ~/
 pwd
 git clone https://github.com/jonathanbaraldi/devopsforlife-terraform-to-pulumi.git
 
-cd ~/aws/terraform/terraform-kubernetes-deployment/
-
-cd ~/aws/terraform/terraform-kubernetes-deployment/eks-cluster
+cd ./devopsforlife-terraform-to-pulumi/aws/terraform/terraform-kubernetes-deployment/eks-cluster
 
 
 terraform init
@@ -126,8 +121,6 @@ Verificar VPC
 Verificar EC2
 Verificar EKS
 
-
-
 aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output --raw cluster_name)
 
 
@@ -139,8 +132,6 @@ kubectl get services -A
 kubectl  get ns
 ```
 
-
-
 # Aula 6 - App - Parte 1
 
 Código terraform
@@ -148,9 +139,81 @@ Código terraform
 # Aula 7 - App - Parte 2
 
 ```sh
+cd ../nodejs-application/
+
+terraform  init
+
+terraform plan
+
+terraform graph -type plan  | dot -Tsvg > graph.svg
+
+terraform apply
+
+kubectl get pods -A
+kubectl get deployments -A
+kubectl get services -A
 
 
-cd ~/DevOps/aws/terraform/terraform-kubernetes-deployment/nodejs-application/
+terraform destroy
+```
+
+
+# Aula 8 - GKE parte 1
+
+Explicar o terraform
+
+
+# Aula 9 - GKE parte 2
+
+* Conta nova ?
+
+Já vem as ferramentas no Google Cloud - Explicar.
+Ativar a API de INSTANCIAS e do KUBERNETES,
+Ativar mais de 500GB para espaço nas maquinas, ou reduzir para apenas 1 máquina.
+
+project-id = gitlab-356218
+
+```sh 
+git clone https://github.com/jonathanbaraldi/devopsforlife-terraform-to-pulumi.git
+
+cd ./devopsforlife-terraform-to-pulumi/gcp/terraform/terraform-kubernetes-deployment/gke-cluster
+
+# Atualizar your terraform.tfvars file
+vi terraform.tfvars
+
+
+terraform init
+
+terraform plan
+
+terraform apply
+
+
+# Pegar as credenciais para o projeto
+gcloud config set project gitlab-356218
+
+gcloud container clusters get-credentials gitlab-356218-gke --region us-central1
+
+kubectl get nodes
+
+kubectl get pods -A
+kubectl get deployments -A
+kubectl get services -A
+kubectl  get ns
+```
+
+
+# Aula 10 - GKE App - Parte 1
+
+Código terraform
+
+
+# Aula 11 - GKE App - Parte 2
+
+```sh
+
+
+cd ../nodejs-application/
 
 terraform  init
 
@@ -171,16 +234,5 @@ terraform destroy
 ```
 
 
-# Aula 8 - Módulos customizados 
 
-
-
-
-
-
-
-
-
-
-
-
+# Aula 11
