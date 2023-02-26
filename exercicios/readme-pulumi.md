@@ -1,54 +1,85 @@
-readme-pulumi.md
+
+# Aula 20 - Pulumi
 
 
+# Aula 21 Pulumi - EKS - parte 2
+
+
+Instalar:
+1. Pulumi
+2. Kubectl
+3. Helm
+4. AWS-CLI
+
+
+
+
+
+
+
+```sh
+ssh -i devops2.pem ubuntu@18.224.251.247
+
+# Python3
+sudo apt install python3-venv python3-pip
+
+
+# Pulumi
 curl -fsSL https://get.pulumi.com | sh
 
 pulumi version
 
-configure aws-cli
-configure kubectl
-configure helm
+
+# AWS-CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+aws --version
 
 
+# KUBECTL
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    #// echo "$(cat kubectl.sha256)  kubectl" | sha256sum –check
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl --help
 
-git clone https://github.com/pulumi/examples.git
 
-cd ./examples/aws-py-eks/
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export AWS_DEFAULT_REGION=us-east-2
+
+
+aws sts get-caller-identity
+
+```
+
 
 
 
 
 https://www.pulumi.com/docs/reference/cli/pulumi_login/
 
-$ pulumi login file://~
-
-will store your state information on your computer underneath ~/.pulumi. It is then up to you to manage this state, including backing it up, using it in a team environment, and so on
-
-
-
-
+```sh
 pulumi login file://~
 
+# will store your state information on your computer underneath ~/.pulumi. It is then up to you to manage this state, including backing it up, using it in a team environment, and so on
 
-# AQUI
-mkdir quickstart && cd quickstart && pulumi new aws-python
+# Iniciando
+mkdir aws-py-eks && cd aws-py-eks 
+
 pulumi new aws-python
 
-
-FAZER O PASSO A PASSO
-
-Copiar os arquivos.
-
-
+# Fazer wizard
+# Copiar os arquivos.
 
 pulumi config set aws:region us-east-2
 
+pulumi preview
 
+pulumi up 
 
-
-
-
-
+```
 
 
 1.  View the cluster name via `stack output`:
@@ -64,7 +95,7 @@ pulumi config set aws:region us-east-2
 
 1. Update your KubeConfig, Authenticate to your Kubernetes Cluster and verify you have API access and nodes running.
 
-```
+```sh
 $ aws eks --region us-east-2 update-kubeconfig --name $(pulumi stack output cluster-name)
 
 aws eks --region us-east-2 update-kubeconfig --name eks-cluster-a0fbff1
@@ -75,9 +106,7 @@ eks-cluster-a0fbff1
 ```
 
 
-
-
-```
+```sh
 $ kubectl get nodes
 
     NAME                                         STATUS   ROLES    AGE   VERSION
@@ -88,83 +117,6 @@ $ kubectl get nodes
 
 
 
-
-
-
-
-!!!!! Editar 
-
-pulumi new aws-python
-
-
-
-
-
-
-pulumi up
-
-
-
-
-
-
-
-https://app.pulumi.com/cli-login?cliSessionDescription=Generated+by+pulumi+login+on+ip-172-31-33-26+at+26+Feb+23+10%3A58+UTC&cliSessionNonce=31f63894dc09f112c86ed823345db9539f211fb1b4531b1642ce6983c86a4235&cliSessionPort=41699
-
-
-criar a stack- 
-
-
-export AWS_ACCESS_KEY_ID=AKIA6KIIWV2JRPLFINW3 && export AWS_SECRET_ACCESS_KEY=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
-
-
-
-!
-pulumi stack init python-eks-testing
- colocar senhas...
-
-
-pulumi up
-- colocsar senha - 
-
-
-
-
-
-
-criar virtual env
-
-Instalar python 3
-! apt install python3.10-venv
-
-
-
-python -m venv .env
-source myenv/bin/activate
-pip install -r requirements.txt
-
-
-
-
-sudo apt install python3-venv python3-pip
-
-
-python3 -m venv .env
-source .env/bin/activate
-pip3 install -r requirements.txt
-
-
-
-
-
-
-
-
-default
-
-export AWS_PROFILE=default
-
-pulumi config set aws:profile default
 
 
 

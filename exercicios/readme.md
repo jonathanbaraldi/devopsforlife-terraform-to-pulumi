@@ -16,7 +16,8 @@
 12) Módulos customizados
 
 
-20) Pulumi - o que é
+20) Pulumi - o que é - EKS - parte 1
+21) Pulumi - EKS - parte 2
 
 
 # requisitos
