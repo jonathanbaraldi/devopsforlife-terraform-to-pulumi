@@ -124,6 +124,9 @@ Verificar EKS
 aws eks --region $(terraform output -raw region) update-kubeconfig --name $(terraform output --raw cluster_name)
 
 
+aws eks --region us-east-1 update-kubeconfig --name test-eks-cluster-FoqKEumc
+
+
 kubectl get nodes
 
 kubectl get pods -A
@@ -163,6 +166,9 @@ terraform destroy
 Explicar o terraform
 
 
+
+
+
 # Aula 9 - GKE parte 2
 
 * Conta nova ?
@@ -170,6 +176,8 @@ Explicar o terraform
 Já vem as ferramentas no Google Cloud - Explicar.
 Ativar a API de INSTANCIAS e do KUBERNETES,
 Ativar mais de 500GB para espaço nas maquinas, ou reduzir para apenas 1 máquina.
+
+SSD - cotas - Persistent Storagbe SSD
 
 project-id = gitlab-356218
 
@@ -180,7 +188,6 @@ cd ./devopsforlife-terraform-to-pulumi/gcp/terraform/terraform-kubernetes-deploy
 
 # Atualizar your terraform.tfvars file
 vi terraform.tfvars
-
 
 terraform init
 
@@ -235,4 +242,4 @@ terraform destroy
 
 
 
-# Aula 11
+# Aula 12 - módulos
