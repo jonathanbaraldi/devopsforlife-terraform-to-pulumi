@@ -1,26 +1,21 @@
 
-# Aula 20 - Pulumi
+# Aula 20 Pulumi - EKS - parte 1
 
+O que é como usar e primeiro deployment.
 
 # Aula 21 Pulumi - EKS - parte 2
-
 
 Instalar:
 1. Pulumi
 2. Kubectl
-3. Helm
 4. AWS-CLI
-
-
-
-
-
 
 
 ```sh
 ssh -i devops2.pem ubuntu@18.224.251.247
 
 # Python3
+sudo apt-get update
 sudo apt install python3-venv python3-pip
 
 
@@ -32,6 +27,8 @@ pulumi version
 
 # AWS-CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+sudo apt-get install unzip
 unzip awscliv2.zip
 sudo ./aws/install
 aws --version
@@ -47,15 +44,7 @@ kubectl --help
 
 export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
-export AWS_DEFAULT_REGION=us-east-2
-
-
-aws sts get-caller-identity
-
 ```
-
-
-
 
 
 https://www.pulumi.com/docs/reference/cli/pulumi_login/
@@ -65,20 +54,14 @@ pulumi login file://~
 
 # will store your state information on your computer underneath ~/.pulumi. It is then up to you to manage this state, including backing it up, using it in a team environment, and so on
 
-# Iniciando
-mkdir aws-py-eks && cd aws-py-eks 
+mkdir kubernetes-aws-python
+cd kubernetes-aws-python
+pulumi new kubernetes-aws-python
 
-pulumi new aws-python
-
-# Fazer wizard
-# Copiar os arquivos.
-
-pulumi config set aws:region us-east-2
-
+# Ver os arquivos
 pulumi preview
 
 pulumi up 
-
 ```
 
 
@@ -96,15 +79,10 @@ pulumi up
 1. Update your KubeConfig, Authenticate to your Kubernetes Cluster and verify you have API access and nodes running.
 
 ```sh
-$ aws eks --region us-east-2 update-kubeconfig --name $(pulumi stack output cluster-name)
-
-aws eks --region us-east-2 update-kubeconfig --name eks-cluster-a0fbff1
-
-eks-cluster-a0fbff1
+aws eks --region us-east-2 update-kubeconfig --name eks-cluster-eksCluster-d1523f4
 
     Added new context arn:aws:eks:us-east-2:account:cluster/eks-cluster-96b87e8
 ```
-
 
 ```sh
 $ kubectl get nodes
@@ -116,7 +94,42 @@ $ kubectl get nodes
 
 
 
+# Aula 22 - Pulumi EKS/APP - Parte 1
+
+Ver estrutura dos arquivos
 
 
+# Aula 23 - Pulumi EKS/APP - Parte 2
+
+```sh
+mkdir kubernetes-python 
+cd kubernetes-python
+pulumi new kubernetes-python
+
+# Fazer o wizard
+
+
+# Revisar os arquivos
+
+#Let’s review some of the generated project files:
+
+#Pulumi.yaml defines the project.
+#Pulumi.dev.yaml contains configuration values for the stack we initialized.
+#main.py is the Pulumi program that defines your stack resources.
+#Let’s examine __main__.py .
+
+
+pulumi up
+
+# Fazer as alterações
+
+pulumi preview
+pulumi up
+
+kubectl get service
+
+kubectl port-forward service/nginx-3hq3kux6 8080:80
+
+```
 
 

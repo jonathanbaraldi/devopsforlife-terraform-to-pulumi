@@ -13,11 +13,19 @@
 9) GKE - Parte 2
 10) GKE-App Parte 1
 11) GKE-App Parte 2
-12) Módulos customizados
-
-
-20) Pulumi - o que é - EKS - parte 1
+12) Terraform Cloud
+13) Módulos 
+14) Módulo S3 - Parte 1 - Código
+15) Módulo S3 - Parte 2 - Deploy
+16) Módulo RDS - Com SecretManager - Parte 1 - Código
+17) Módulo RDS - Com SecretManager - Parte 2 - Deploy
+18) ??? 
+19) ???
+20) Pulumi - EKS - parte 1
 21) Pulumi - EKS - parte 2
+22) Pulumi - EKS/app - parte 1
+23) Pulumi - EKS/app - parte 2
+
 
 
 # requisitos
@@ -241,6 +249,41 @@ terraform destroy
 
 ```
 
+# Aula 12 -  Terraform Cloud
+
+# Aula 13 - Módulos 
+
+# Aula 14 - Módulo S3 - Parte 1 - Código
+    Pasta aws/terraform-modules-create-s3-bucket
+
+# Aula 15 - Módulo S3 - Parte 2 - Deploy
+
+    Pasta aws/terraform-modules-create-s3-bucket
+
+```sh
+terraform init
+terraform plan
+terraform apply
+
+```    
+
+# Aula 16 - Módulo RDS - Com SecretManager - Parte 1 - Código
+
+Pasta aws/terraform-modules-create-s3-bucket
 
 
-# Aula 12 - módulos
+# Aula 17 - Módulo RDS - Com SecretManager - Parte 2 - Deploy
+
+
+```sh
+terraform init
+terraform plan
+terraform apply
+
+
+
+terraform destroy
+```    
+
+
+
